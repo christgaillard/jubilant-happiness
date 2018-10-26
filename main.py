@@ -6,7 +6,7 @@ cap = cv2.VideoCapture(0)
 
 green = (0, 255, 0)
 orange = (0, 255, 255)
-red = (255, 0, 0)
+red = (0, 0, 255)
 white = (255, 255, 255)
 black = (0, 0, 0)
 
@@ -17,9 +17,14 @@ while(True):
     # Our operations on the frame come here
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 
-    cv2.line(frame, (50, 150), (550, 150), orange, 5)
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(frame, 'OpenCV', (10, 400), font, 1, (255, 255, 255), 1, cv2.LINE_AA)
+    cv2.line(frame, (50, 450), (550, 450), red, 5)
+    cv2.line(frame,(50,450),(100,400),red,5)
+    cv2.line(frame,(550,450),(500,400),red,5)
+    cv2.line(frame,(90,400),(110,400),red,3)
+    cv2.line(frame, (490, 400), (510, 400), red, 3)
+    cv2.line(frame,(100,397),(185,300),orange,5)
+    #font = cv2.FONT_HERSHEY_SIMPLEX
+    # cv2.putText(frame, 'OpenCV', (10, 400), font, 1, (255, 255, 255), 1, cv2.LINE_AA)
     # Display the resulting frame
     cv2.imshow('video', frame)
 
