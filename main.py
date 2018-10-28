@@ -5,7 +5,7 @@ import time, sys
 
 cap = cv2.VideoCapture(0)
 
-
+sound_speed = 340.0 / 1000
 trigger_pin_left = 8
 echo_pin_left = 7
 
@@ -18,7 +18,7 @@ GPIO.setup(echo_pin_right, GPIO.IN)
 
 def send_trigger_pulse(pin):
     GPIO.output(pin, True)
-    time.sleep(0.0001)
+    time.sleep(0.00001)
     GPIO.output(pin,False)
     
 def wait_for_echo(pin, value, timeout):
@@ -28,12 +28,13 @@ def wait_for_echo(pin, value, timeout):
 
 def get_distance(trigger_pin, echo_pin):
     send_trigger_pulse(trigger_pin)
-    wait_for_echo(echo_pin, True, 10000)
+    wait_for_echo(echo_pin, True, 250000)
     start = time.time()
-    wait_for_echo(echo_pin, False,10000)
+    wait_for_echo(echo_pin, False,250000)
     finish = time.time()
     pulse_len = finish - start
-    distance_cm = pulse_len/0.000058
+    distance_cm = pulse_len * 34000
+    distance_cm = distance_cm/2
     return int(distance_cm)
 
 green = (0, 255, 0)
@@ -72,4 +73,4 @@ while(True):
 # When everything done, release the capture
 cap.release()
 cv2.destroyAllWindows()
-time.sleep(0,1)
+time.sleep(0.1)
