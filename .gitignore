@@ -1,1 +1,4 @@
 .idea/
+__pycache__/
+interface/__pycache__/
+video/__pycache__/
